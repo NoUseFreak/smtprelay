@@ -14,7 +14,6 @@ FROM gcr.io/distroless/base:nonroot@sha256:2261b65122adb19da72084617c03a9084c24b
 
 COPY --from=0 /workspace/source/smtprelay /usr/local/bin/smtprelay
 
-# logfile is /dev/null (not /proc/self/fd/1) because logs go to stdout as well
-ENTRYPOINT [ "smtprelay", "-logfile=/dev/null" ]
+ENTRYPOINT [ "smtprelay", "-logfile=/proc/self/fd/1" ]
 CMD [ "--help" ]
 EXPOSE 25
